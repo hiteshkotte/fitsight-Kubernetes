@@ -16,7 +16,7 @@ RUN apt-get update && \
     ffmpeg && \
     rm -rf /var/lib/apt/lists/*
 
-COPY . /app
+COPY . /app/
 WORKDIR /app
 
 # Install Python requirements
