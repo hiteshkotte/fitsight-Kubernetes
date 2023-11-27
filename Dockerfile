@@ -16,17 +16,21 @@ RUN apt-get update && \
     ffmpeg && \
     rm -rf /var/lib/apt/lists/*
 
+# Create the /app directory
+RUN mkdir -p /app
+
+# Copy the entire application, including Git LFS files, to /app directory
 COPY . /app/
-WORKDIR /app
 
 # Install Python requirements
-RUN pip install -r requirements.txt
+RUN pip install -r /app/requirements.txt
 
 ENV QT_PLUGIN_PATH=/usr/local/lib/python3.8/site-packages/cv2/qt/plugins/platforms
 
 EXPOSE 5000
 
 CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
+
 
 
 
